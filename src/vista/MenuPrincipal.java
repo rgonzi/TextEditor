@@ -93,6 +93,7 @@ public class MenuPrincipal extends JFrame {
 		
 		
 		//Creem un panel per afegit un JToolBar i les opcions per formatar el text
+		//TODO Implementar la barra i els seus ActionListeners
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
