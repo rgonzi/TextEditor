@@ -57,12 +57,6 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 				finestra.dispose();
 			}
 			break;
-		case "Copy":
-			//TODO Copiar + shortcut
-			break;
-		case "Paste":
-			//TODO Enganxar + shortcut
-			break;
 		case "Full Screen":
 			//TODO Fer gran la finestra
 			break;
@@ -85,6 +79,10 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 		paraules = finestra.getTextArea().getText().split("\\s").length;
 		caracters = finestra.getTextArea().getText().length();
 		//Actualitzem comptadors de paraules i caràcters
-		finestra.getCounts().setText("Paraules: " + paraules + " Caràcters: " + caracters);
+		if (finestra.getTextArea().getText().equals("")) {
+			finestra.getCounts().setText("Words: 0 Chars: 0");
+		} else {
+			finestra.getCounts().setText("Words: " + paraules + " Chars: " + caracters);
+		}
 	}
 }
