@@ -1,8 +1,7 @@
 package main;
 
 import javax.swing.SwingUtilities;
-
-import vista.MenuPrincipal;
+import controlador.ControladorPrincipal;
 
 public class Main {
 	public static void main(String[] args) {
@@ -10,8 +9,7 @@ public class Main {
 			@Override
 			public void run() {
 				try {
-					new MenuPrincipal();
-					//new ControladorPrincipal();
+					new ControladorPrincipal();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
