@@ -1,6 +1,8 @@
 package vista;
  
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
+
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -62,8 +64,10 @@ public class MenuPrincipal extends JFrame {
 		menuItems[2] = new JMenuItem("Save as...");
 		menuItems[3] = new JMenuItem("Exit");
 		
-		menuItems[4] = new JMenuItem("Copy");
-		menuItems[5] = new JMenuItem("Paste");
+		menuItems[4] = new JMenuItem(new DefaultEditorKit.CopyAction());
+		menuItems[4].setText("Copy");
+		menuItems[5] = new JMenuItem(new DefaultEditorKit.PasteAction());
+		menuItems[5].setText("Paste");
 		
 		menuItems[6] = new JMenuItem("Full Screen");
 		
@@ -79,7 +83,7 @@ public class MenuPrincipal extends JFrame {
 		helpMenu.add(menuItems[7]);
 		
 		//Iniciem el camp de text dels comptadors
-		this.counts.setText("Paraules: 0 Caràcters: 0");
+		this.counts.setText("Words: 0 Chars: 0");
 		
 	}
 	
