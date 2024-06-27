@@ -14,6 +14,7 @@ public class MenuPrincipal extends JFrame {
 	private JMenuItem[] menuItems = new JMenuItem[8]; // open, save, saveAs, exit, copy, paste, fullscreen, about
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
+	private JTextField counts;
 
 	public MenuPrincipal() {
 		//Iniciem la finestra amb una mida predefinida i la centrem
@@ -35,6 +36,11 @@ public class MenuPrincipal extends JFrame {
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
+		
+		counts = new JTextField();
+		counts.setEditable(false);
+		getContentPane().add(counts, BorderLayout.SOUTH);
+		counts.setColumns(10);
 		
 		//Creació del menuBar amb tots els menus
 		menuBar = new JMenuBar();
@@ -72,6 +78,9 @@ public class MenuPrincipal extends JFrame {
 		viewMenu.add(menuItems[6]);
 		helpMenu.add(menuItems[7]);
 		
+		//Iniciem el camp de text dels comptadors
+		this.counts.setText("Paraules: 0 Caràcters: 0");
+		
 	}
 	
 	//Getters i setters
@@ -80,16 +89,24 @@ public class MenuPrincipal extends JFrame {
 		return textArea;
 	}
 
-	public JMenuItem[] getMenuItems() {
-		return menuItems;
-	}
-
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
 	}
 	
+	public JMenuItem[] getMenuItems() {
+		return menuItems;
+	}
+
 	public void setMenuItems(JMenuItem[] menuItems) {
 		this.menuItems = menuItems;
+	}
+
+	public JTextField getCounts() {
+		return counts;
+	}
+
+	public void setCounts(JTextField counts) {
+		this.counts = counts;
 	}
 	
 }
