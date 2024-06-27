@@ -13,10 +13,16 @@ public class MenuPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JMenuBar menuBar;
 	private JMenu fileMenu, editMenu, viewMenu, helpMenu;
-	private JMenuItem[] menuItems = new JMenuItem[8]; // open, save, saveAs, exit, copy, paste, fullscreen, about
+	private JMenuItem[] menuItems = new JMenuItem[8];
+	private JPanel panel;
+	private JToolBar toolBar;
+	private JButton btnBold, btnItalic;
+	private JComboBox comboBox;
+	private JSeparator separator, separator_1, separator_2;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
 	private JTextField counts;
+	
 
 	public MenuPrincipal() {
 		//Iniciem la finestra amb una mida predefinida i la centrem
@@ -84,6 +90,36 @@ public class MenuPrincipal extends JFrame {
 		
 		//Iniciem el camp de text dels comptadors
 		this.counts.setText("Words: 0 Chars: 0");
+		
+		
+		//Creem un panel per afegit un JToolBar i les opcions per formatar el text
+		panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		panel.add(toolBar);
+		
+		btnBold = new JButton("  B  ");
+		btnBold.setFont(new Font("Tahoma", Font.BOLD, 11));
+		toolBar.add(btnBold);
+		
+		btnItalic = new JButton("  K  ");
+		btnItalic.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		toolBar.add(btnItalic);
+		
+		comboBox = new JComboBox();
+		toolBar.add(comboBox);
+		
+		separator = new JSeparator();
+		toolBar.add(separator);
+		
+		separator_1 = new JSeparator();
+		toolBar.add(separator_1);
+		
+		separator_2 = new JSeparator();
+		toolBar.add(separator_2);
 		
 	}
 	
