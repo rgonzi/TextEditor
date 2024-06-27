@@ -5,14 +5,13 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 public class AboutFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JTextArea txtrAboutTexteditorversion;
+	private JTextArea txtAbout;
 
 	public AboutFrame() {
 		setTitle("About");
@@ -33,15 +32,15 @@ public class AboutFrame extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		txtrAboutTexteditorversion = new JTextArea();
-		txtrAboutTexteditorversion.setText("TextEditor ©"
+		txtAbout = new JTextArea();
+		txtAbout.setText("TextEditor ©"
 				+ "\nVersion: preRelease"
 				+ "\nRelease Date: -"
 				+ "\n\nDeveloped by: Roger González Acosta [rgonzi]"
 				+ "\nEmail: rogergonzalezacosta@gmail.com"
 				+ "\nGitHub: https://github.com/rgonzi");
-		txtrAboutTexteditorversion.setEditable(false);
-		panel.add(txtrAboutTexteditorversion);
+		txtAbout.setEditable(false);
+		panel.add(txtAbout);
 		
 	}
 
