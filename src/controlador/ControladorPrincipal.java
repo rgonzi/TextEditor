@@ -1,14 +1,17 @@
 package controlador;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+import vista.AboutFrame;
 import vista.MenuPrincipal;
 
 public class ControladorPrincipal implements ActionListener{
 
 	private MenuPrincipal finestra;
+	private AboutFrame about;
 	
 	
 	public ControladorPrincipal() {
@@ -52,6 +55,9 @@ public class ControladorPrincipal implements ActionListener{
 			break;
 		case "About":
 			//TODO Implementar finestra About
+			about = new AboutFrame();
+			about.setVisible(true);
+			
 			break;
 		}
 	}
