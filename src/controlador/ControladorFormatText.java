@@ -3,6 +3,9 @@ package controlador;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.*;
+import java.text.AttributedCharacterIterator;
+import java.util.Map;
 
 import javax.swing.JTextArea;
 
@@ -58,8 +61,14 @@ public class ControladorFormatText implements ActionListener {
 			
 		} else if (obj == finestra.getComboFont() ) {
 			//Obtenim el nom de la nova font
-			String estil = finestra.getComboFont().getSelectedItem().toString();
-			//
+			String tipusLletra = finestra.getComboFont().getSelectedItem().toString();
+			
+			//Obtenim els atributs de l'estil actual
+			int estil = fontActual.getStyle();
+			int mida = fontActual.getSize();
+			
+			//Definim el nou estil
+			nouEstil = new Font(tipusLletra, estil, mida);
 		}
 		
 		if (nouEstil != null) {
