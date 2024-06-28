@@ -17,11 +17,14 @@ public class MenuPrincipal extends JFrame {
 	private JPanel panel;
 	private JToolBar toolBar;
 	private JButton btnBold, btnItalic;
-	private JComboBox comboBox;
-	private JSeparator separator, separator_1, separator_2;
+	private JComboBox comboFont;
+	private JSeparator separator2;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
 	private JTextField counts;
+	private JComboBox comboSize;
+	private JSeparator separator3;
+	private JSeparator separator1;
 	
 
 	public MenuPrincipal() {
@@ -110,17 +113,24 @@ public class MenuPrincipal extends JFrame {
 		btnItalic.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		toolBar.add(btnItalic);
 		
-		comboBox = new JComboBox();
-		toolBar.add(comboBox);
+		separator1 = new JSeparator();
+		separator1.setMaximumSize(new Dimension(4000, 32767));
+		toolBar.add(separator1);
 		
-		separator = new JSeparator();
-		toolBar.add(separator);
+		comboSize = new JComboBox();
+		comboSize.setMaximumSize(new Dimension(3000, 32767));
+		toolBar.add(comboSize);
 		
-		separator_1 = new JSeparator();
-		toolBar.add(separator_1);
+		separator2 = new JSeparator();
+		separator2.setMaximumSize(new Dimension(4000, 32767));
+		toolBar.add(separator2);
 		
-		separator_2 = new JSeparator();
-		toolBar.add(separator_2);
+		comboFont = new JComboBox();
+		toolBar.add(comboFont);
+		
+		separator3 = new JSeparator();
+		separator3.setPreferredSize(new Dimension(400, 2));
+		toolBar.add(separator3);
 		
 	}
 	
