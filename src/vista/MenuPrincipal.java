@@ -17,14 +17,12 @@ public class MenuPrincipal extends JFrame {
 	private JPanel panel;
 	private JToolBar toolBar;
 	private JButton btnBold, btnItalic;
-	private JComboBox comboFont;
-	private JSeparator separator2;
+	private JComboBox<String> comboFont;
+	private JComboBox<Integer> comboSize;
+	private JSeparator separator1, separator2, separator3;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
 	private JTextField counts;
-	private JComboBox comboSize;
-	private JSeparator separator3;
-	private JSeparator separator1;
 	
 
 	public MenuPrincipal() {
@@ -99,38 +97,77 @@ public class MenuPrincipal extends JFrame {
 		//TODO Implementar la barra i els seus ActionListeners
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		panel.add(toolBar);
 		
-		btnBold = new JButton("  B  ");
+		btnBold = new JButton("B");
+		btnBold.setPreferredSize(new Dimension(23, 23));
+		btnBold.setMinimumSize(new Dimension(23, 23));
+		btnBold.setMaximumSize(new Dimension(23, 23));
 		btnBold.setFont(new Font("Tahoma", Font.BOLD, 11));
 		toolBar.add(btnBold);
 		
-		btnItalic = new JButton("  K  ");
+		btnItalic = new JButton("K");
+		btnItalic.setMinimumSize(new Dimension(23, 23));
+		btnItalic.setMaximumSize(new Dimension(23, 23));
+		btnItalic.setPreferredSize(new Dimension(23, 23));
 		btnItalic.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		toolBar.add(btnItalic);
 		
 		separator1 = new JSeparator();
-		separator1.setMaximumSize(new Dimension(4000, 32767));
+		separator1.setMinimumSize(new Dimension(10, 0));
+		separator1.setPreferredSize(new Dimension(10, 23));
+		separator1.setMaximumSize(new Dimension(15, 23));
 		toolBar.add(separator1);
 		
-		comboSize = new JComboBox();
-		comboSize.setMaximumSize(new Dimension(3000, 32767));
+		comboSize = new JComboBox<Integer>();
+		comboSize.setPreferredSize(new Dimension(45, 22));
+		comboSize.setMaximumSize(new Dimension(45, 22));
+		initComboSize();
+		comboSize.setSelectedIndex(1);
 		toolBar.add(comboSize);
 		
 		separator2 = new JSeparator();
-		separator2.setMaximumSize(new Dimension(4000, 32767));
+		separator2.setPreferredSize(new Dimension(15, 23));
+		separator2.setMinimumSize(new Dimension(15, 23));
+		separator2.setMaximumSize(new Dimension(20, 23));
 		toolBar.add(separator2);
 		
-		comboFont = new JComboBox();
+		comboFont = new JComboBox<String>();
+		comboFont.setMinimumSize(new Dimension(30, 23));
+		comboFont.setPreferredSize(new Dimension(150, 23));
+		comboFont.setMaximumSize(new Dimension(170, 23));
+		initComboFont();
 		toolBar.add(comboFont);
 		
 		separator3 = new JSeparator();
 		separator3.setPreferredSize(new Dimension(400, 2));
 		toolBar.add(separator3);
+		
+	}
+	
+	private void initComboSize() {
+		for (int i = 8; i <= 64; i = i + 2) {
+			comboSize.addItem(i);
+		}
+		
+	}
+	
+	private void initComboFont() {
+		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		int posDefaultFont = 0;
+		//Afegim les fonts al nostre comboBox
+		for (int i = 0; i < fonts.length; i++) {
+			comboFont.addItem(fonts[i]);
+			
+			if (fonts[i].equals("Times New Roman")) {
+				posDefaultFont = i;
+			}
+			comboFont.setSelectedIndex(posDefaultFont);
+		}
 		
 	}
 	
@@ -159,5 +196,39 @@ public class MenuPrincipal extends JFrame {
 	public void setCounts(JTextField counts) {
 		this.counts = counts;
 	}
+
+	public JButton getBtnBold() {
+		return btnBold;
+	}
+
+	public void setBtnBold(JButton btnBold) {
+		this.btnBold = btnBold;
+	}
+
+	public JButton getBtnItalic() {
+		return btnItalic;
+	}
+
+	public void setBtnItalic(JButton btnItalic) {
+		this.btnItalic = btnItalic;
+	}
+
+	public JComboBox<String> getComboFont() {
+		return comboFont;
+	}
+
+	public void setComboFont(JComboBox<String> comboFont) {
+		this.comboFont = comboFont;
+	}
+
+	public JComboBox<Integer> getComboSize() {
+		return comboSize;
+	}
+
+	public void setComboSize(JComboBox<Integer> comboSize) {
+		this.comboSize = comboSize;
+	}
+	
+	
 	
 }

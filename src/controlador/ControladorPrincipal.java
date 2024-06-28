@@ -14,14 +14,17 @@ import vista.MenuPrincipal;
 public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 
 	private MenuPrincipal finestra;
+	private ControladorFormatText controladorFormatText;
 	private AboutFrame about;
-	private boolean edit = false;
+	private boolean edit;
 	private int paraules, caracters;
 	
 	
 	public ControladorPrincipal() {
 		//Construïm la finestra principal
 		finestra = new MenuPrincipal();
+		edit = false;
+		
 		finestra.setVisible(true);
 		
 		//Afegim els Listeners necessaris
@@ -30,6 +33,9 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 		}
 		
 		finestra.getTextArea().addKeyListener(this);
+		
+		//Iniciem el controlador del format del text
+		controladorFormatText = new ControladorFormatText(finestra);
 		
 	}
 	
