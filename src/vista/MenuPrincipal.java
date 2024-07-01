@@ -6,6 +6,9 @@ import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MenuPrincipal extends JFrame {
 
@@ -13,7 +16,7 @@ public class MenuPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JMenuBar menuBar;
 	private JMenu fileMenu, editMenu, viewMenu, helpMenu;
-	private JMenuItem[] menuItems = new JMenuItem[8];
+	JMenuItem itemOpen, itemSave, itemSaveAs, itemExit, itemCopy, itemPaste, itemCut, itemFullScreen, itemAbout;
 	private JPanel panel;
 	private JToolBar toolBar;
 	private JButton btnBold, btnItalic;
@@ -65,28 +68,41 @@ public class MenuPrincipal extends JFrame {
 		menuBar.add(helpMenu);
 		
 		//Creem els menuItems dels menus i els afegim als seus menus corresponents
-		menuItems[0] = new JMenuItem("Open");
-		menuItems[1] = new JMenuItem("Save");
-		menuItems[2] = new JMenuItem("Save as...");
-		menuItems[3] = new JMenuItem("Exit");
+		itemOpen = new JMenuItem("Open");
+		itemSave = new JMenuItem("Save");
+		itemSaveAs = new JMenuItem("Save as...");
+		itemExit = new JMenuItem("Exit");
 		
-		menuItems[4] = new JMenuItem(new DefaultEditorKit.CopyAction());
-		menuItems[4].setText("Copy");
-		menuItems[5] = new JMenuItem(new DefaultEditorKit.PasteAction());
-		menuItems[5].setText("Paste");
+		itemCopy = new JMenuItem(new DefaultEditorKit.CopyAction());
+		itemCopy.setText("Copy");
+		itemCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
+		itemPaste = new JMenuItem(new DefaultEditorKit.PasteAction());
+		itemPaste.setText("Paste");
+		itemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
+		editMenu.add(new JSeparator());
+		itemCut = new JMenuItem(new DefaultEditorKit.CutAction());
+		itemCut.setText("Cut");
+		itemCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
 		
-		menuItems[6] = new JMenuItem("Full Screen");
 		
-		menuItems[7] = new JMenuItem("About");
+		itemFullScreen = new JMenuItem("Full Screen");
+		itemFullScreen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0));
 		
-		for(int i = 0; i < 4; i++) {
-			fileMenu.add(menuItems[i]);
-		}
+		itemAbout = new JMenuItem("About");
 		
-		editMenu.add(menuItems[4]);
-		editMenu.add(menuItems[5]);
-		viewMenu.add(menuItems[6]);
-		helpMenu.add(menuItems[7]);
+		fileMenu.add(itemOpen);
+		fileMenu.add(itemSave);
+		fileMenu.add(itemSaveAs);
+		fileMenu.add(itemExit);
+		
+		editMenu.add(itemCopy);
+		editMenu.add(itemPaste);
+		editMenu.add(itemCut);
+		editMenu.add(new JSeparator());
+		
+		viewMenu.add(itemFullScreen);
+		
+		helpMenu.add(itemAbout);
 		
 		//Iniciem el camp de text dels comptadors
 		this.counts.setText("Words: 0 Chars: 0");
@@ -103,6 +119,7 @@ public class MenuPrincipal extends JFrame {
 		panel.add(toolBar);
 		
 		btnBold = new JButton("B");
+		btnBold.setToolTipText("Bold");
 		btnBold.setFocusable(false);
 		btnBold.setPreferredSize(new Dimension(23, 23));
 		btnBold.setMinimumSize(new Dimension(23, 23));
@@ -111,6 +128,7 @@ public class MenuPrincipal extends JFrame {
 		toolBar.add(btnBold);
 		
 		btnItalic = new JButton("K");
+		btnItalic.setToolTipText("Italic");
 		btnItalic.setFocusable(false);
 		btnItalic.setMinimumSize(new Dimension(23, 23));
 		btnItalic.setMaximumSize(new Dimension(23, 23));
@@ -126,6 +144,7 @@ public class MenuPrincipal extends JFrame {
 		
 		comboSize = new JComboBox<Integer>();
 		comboSize.setEditable(true);
+		comboSize.setToolTipText("Size");
 		comboSize.setFocusable(false);
 		comboSize.setPreferredSize(new Dimension(45, 22));
 		comboSize.setMaximumSize(new Dimension(45, 22));
@@ -141,6 +160,7 @@ public class MenuPrincipal extends JFrame {
 		
 		comboStyle = new JComboBox<String>();
 		comboStyle.setEditable(true);
+		comboStyle.setToolTipText("Style");
 		comboStyle.setFocusable(false);
 		comboStyle.setMinimumSize(new Dimension(30, 23));
 		comboStyle.setPreferredSize(new Dimension(150, 23));
@@ -185,14 +205,6 @@ public class MenuPrincipal extends JFrame {
 
 	public void setTextPane(JTextPane textPane) {
 		this.textPane = textPane;
-	}
-	
-	public JMenuItem[] getMenuItems() {
-		return menuItems;
-	}
-
-	public void setMenuItems(JMenuItem[] menuItems) {
-		this.menuItems = menuItems;
 	}
 
 	public JTextField getCounts() {
