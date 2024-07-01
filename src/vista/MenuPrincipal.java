@@ -125,6 +125,7 @@ public class MenuPrincipal extends JFrame {
 		toolBar.add(separator1);
 		
 		comboSize = new JComboBox<Integer>();
+		comboSize.setEditable(true);
 		comboSize.setFocusable(false);
 		comboSize.setPreferredSize(new Dimension(45, 22));
 		comboSize.setMaximumSize(new Dimension(45, 22));
@@ -139,6 +140,7 @@ public class MenuPrincipal extends JFrame {
 		toolBar.add(separator2);
 		
 		comboStyle = new JComboBox<String>();
+		comboStyle.setEditable(true);
 		comboStyle.setFocusable(false);
 		comboStyle.setMinimumSize(new Dimension(30, 23));
 		comboStyle.setPreferredSize(new Dimension(150, 23));
