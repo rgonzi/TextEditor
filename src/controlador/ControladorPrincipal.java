@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JMenuItem;
 
+import persistencia.GestorFitxers;
 import vista.AboutFrame;
 import vista.MenuPrincipal;
 
@@ -16,6 +17,7 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 	private MenuPrincipal finestra;
 	private ControladorFormatText controladorFormatText;
 	private AboutFrame about;
+	private GestorFitxers gestor;
 	private boolean edit;
 	private int paraules, caracters;
 	
@@ -28,11 +30,14 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 		finestra.setVisible(true);
 		
 		//Afegim els Listeners necessaris
-		for (JMenuItem item: finestra.getMenuItems()) {
-			item.addActionListener(this);
-		}
+		finestra.getItemOpen().addActionListener(this);
+		finestra.getItemSave().addActionListener(this);
+		finestra.getItemSaveAs().addActionListener(this);
+		finestra.getItemExit().addActionListener(this);
+		finestra.getItemAbout().addActionListener(this);
+		finestra.getItemFullScreen().addActionListener(this);
 		
-		finestra.getTextPane().addKeyListener(this);
+		finestra.getTextPane().addKeyListener(this); //Per comprobar si hem modificat el text
 		
 		//Iniciem el controlador del format del text
 		controladorFormatText = new ControladorFormatText(finestra);
@@ -47,16 +52,19 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 	private void seleccionarOpcio(String opcio) {
 		switch(opcio) {
 		case "Open":
-			//TODO Obrir un fitxer
+			gestor = new GestorFitxers();
+			gestor.openFile(finestra.getTextPane());
 			break;
 		case "Save":
-			//TODO Guardar un fitxer sobreescrivint-lo
+			gestor = new GestorFitxers();
+			gestor.saveFile(finestra.getTextPane());
+			//Ara el text actual s'ha guardat
+			edit = false;
 			break;
 		case "Save as...":
 			//TODO Guardar en un fitxer diferent
 			break;
 		case "Exit":
-			//TODO Tancar el programa preguntant si guardem canvis
 			if (edit) {
 				//TODO Preguntar si volem guardar abans de tancar
 			} else {

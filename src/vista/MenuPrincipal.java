@@ -2,6 +2,7 @@ package vista;
  
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.StyledEditorKit;
 
 import java.awt.*;
 import java.awt.event.FocusAdapter;
@@ -16,7 +17,7 @@ public class MenuPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JMenuBar menuBar;
 	private JMenu fileMenu, editMenu, viewMenu, helpMenu;
-	JMenuItem itemOpen, itemSave, itemSaveAs, itemExit, itemCopy, itemPaste, itemCut, itemFullScreen, itemAbout;
+	private JMenuItem itemOpen, itemSave, itemSaveAs, itemExit, itemSelectAll, itemCopy, itemPaste, itemCut, itemFullScreen, itemAbout;
 	private JPanel panel;
 	private JToolBar toolBar;
 	private JButton btnBold, btnItalic;
@@ -73,17 +74,19 @@ public class MenuPrincipal extends JFrame {
 		itemSaveAs = new JMenuItem("Save as...");
 		itemExit = new JMenuItem("Exit");
 		
-		itemCopy = new JMenuItem(new DefaultEditorKit.CopyAction());
+		//Alguns d'aquests elements ja poden tenir definits els seus comportaments
+		itemCopy = new JMenuItem(new StyledEditorKit.CopyAction());
 		itemCopy.setText("Copy");
 		itemCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
-		itemPaste = new JMenuItem(new DefaultEditorKit.PasteAction());
+		itemPaste = new JMenuItem(new StyledEditorKit.PasteAction());
 		itemPaste.setText("Paste");
 		itemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
 		editMenu.add(new JSeparator());
-		itemCut = new JMenuItem(new DefaultEditorKit.CutAction());
+		itemCut = new JMenuItem(new StyledEditorKit.CutAction());
 		itemCut.setText("Cut");
 		itemCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
-		
+		itemSelectAll = new JMenuItem("Select All");
+		itemSelectAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
 		
 		itemFullScreen = new JMenuItem("Full Screen");
 		itemFullScreen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0));
@@ -98,7 +101,8 @@ public class MenuPrincipal extends JFrame {
 		editMenu.add(itemCopy);
 		editMenu.add(itemPaste);
 		editMenu.add(itemCut);
-		editMenu.add(new JSeparator());
+		editMenu.addSeparator();
+		editMenu.add(itemSelectAll);
 		
 		viewMenu.add(itemFullScreen);
 		
@@ -205,6 +209,86 @@ public class MenuPrincipal extends JFrame {
 
 	public void setTextPane(JTextPane textPane) {
 		this.textPane = textPane;
+	}
+
+	public JMenuItem getItemOpen() {
+		return itemOpen;
+	}
+
+	public void setItemOpen(JMenuItem itemOpen) {
+		this.itemOpen = itemOpen;
+	}
+
+	public JMenuItem getItemSave() {
+		return itemSave;
+	}
+
+	public void setItemSave(JMenuItem itemSave) {
+		this.itemSave = itemSave;
+	}
+
+	public JMenuItem getItemSaveAs() {
+		return itemSaveAs;
+	}
+
+	public void setItemSaveAs(JMenuItem itemSaveAs) {
+		this.itemSaveAs = itemSaveAs;
+	}
+
+	public JMenuItem getItemExit() {
+		return itemExit;
+	}
+
+	public void setItemExit(JMenuItem itemExit) {
+		this.itemExit = itemExit;
+	}
+
+	public JMenuItem getItemSelectAll() {
+		return itemSelectAll;
+	}
+
+	public void setItemSelectAll(JMenuItem itemSelectAll) {
+		this.itemSelectAll = itemSelectAll;
+	}
+
+	public JMenuItem getItemCopy() {
+		return itemCopy;
+	}
+
+	public void setItemCopy(JMenuItem itemCopy) {
+		this.itemCopy = itemCopy;
+	}
+
+	public JMenuItem getItemPaste() {
+		return itemPaste;
+	}
+
+	public void setItemPaste(JMenuItem itemPaste) {
+		this.itemPaste = itemPaste;
+	}
+
+	public JMenuItem getItemCut() {
+		return itemCut;
+	}
+
+	public void setItemCut(JMenuItem itemCut) {
+		this.itemCut = itemCut;
+	}
+
+	public JMenuItem getItemFullScreen() {
+		return itemFullScreen;
+	}
+
+	public void setItemFullScreen(JMenuItem itemFullScreen) {
+		this.itemFullScreen = itemFullScreen;
+	}
+
+	public JMenuItem getItemAbout() {
+		return itemAbout;
+	}
+
+	public void setItemAbout(JMenuItem itemAbout) {
+		this.itemAbout = itemAbout;
 	}
 
 	public JTextField getCounts() {

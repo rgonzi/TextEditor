@@ -31,6 +31,7 @@ public class ControladorFormatText implements ActionListener {
 		finestra.getBtnItalic().addActionListener(this);
 		finestra.getComboFont().addActionListener(this);
 		finestra.getComboSize().addActionListener(this);
+		finestra.getItemSelectAll().addActionListener(this);
 	}
 
 	@Override
@@ -71,6 +72,8 @@ public class ControladorFormatText implements ActionListener {
 			} else if (obj == finestra.getComboFont()) {
 				String font = finestra.getComboFont().getSelectedItem().toString();
 				StyleConstants.setFontFamily(sas, font);
+			} else if (obj == finestra.getItemSelectAll()) {
+				text.selectAll();
 			}
 			
 			// Apliquem els nous atributs al text seleccionat
