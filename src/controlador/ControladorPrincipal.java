@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JMenuItem;
+import javax.swing.JTextPane;
 
 import persistencia.GestorFitxers;
 import vista.AboutFrame;
@@ -39,8 +40,9 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 		
 		finestra.getTextPane().addKeyListener(this); //Per comprobar si hem modificat el text
 		
-		//Iniciem el controlador del format del text
+		//Iniciem els controladors
 		controladorFormatText = new ControladorFormatText(finestra);
+		gestor = new GestorFitxers();
 		
 	}
 	
@@ -50,19 +52,19 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 	}
 	
 	private void seleccionarOpcio(String opcio) {
+		JTextPane text = finestra.getTextPane();
 		switch(opcio) {
 		case "Open":
-			gestor = new GestorFitxers();
-			gestor.openFile(finestra.getTextPane());
+			gestor.openFile(text);
 			break;
 		case "Save":
 			gestor = new GestorFitxers();
-			gestor.saveFile(finestra.getTextPane());
+			gestor.saveFile(text);
 			//Ara el text actual s'ha guardat
 			edit = false;
 			break;
 		case "Save as...":
-			//TODO Guardar en un fitxer diferent
+			gestor.saveFileAs(text);
 			break;
 		case "Exit":
 			if (edit) {
