@@ -32,7 +32,7 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 			item.addActionListener(this);
 		}
 		
-		finestra.getTextArea().addKeyListener(this);
+		finestra.getTextPane().addKeyListener(this);
 		
 		//Iniciem el controlador del format del text
 		controladorFormatText = new ControladorFormatText(finestra);
@@ -82,10 +82,10 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 	@Override
 	public void keyReleased (KeyEvent e) {
 		
-		paraules = finestra.getTextArea().getText().split("\\s").length;
-		caracters = finestra.getTextArea().getText().length();
+		paraules = finestra.getTextPane().getText().split("\\s").length;
+		caracters = finestra.getTextPane().getText().length();
 		//Actualitzem comptadors de paraules i caràcters
-		if (finestra.getTextArea().getText().equals("")) {
+		if (finestra.getTextPane().getText().equals("")) {
 			finestra.getCounts().setText("Words: 0 Chars: 0");
 		} else {
 			finestra.getCounts().setText("Words: " + paraules + " Chars: " + caracters);

@@ -7,7 +7,16 @@ import java.awt.font.*;
 import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
+import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.Element;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.StyledEditorKit;
 
 import vista.MenuPrincipal;
 
@@ -30,49 +39,42 @@ public class ControladorFormatText implements ActionListener {
 	}
 	
 	private void seleccionarOpcio (Object obj) {
-		
-		// Obtenim el TextArea i l'estil actual
-		JTextArea textArea = finestra.getTextArea();
-		Font fontActual = textArea.getFont();
-		Font nouEstil = null;
+		JTextPane text = finestra.getTextPane();
 
-		//Comprovem el botó apretat i definim comportament segons els estils inicials
-		if (obj == finestra.getBtnBold()) {
-			switch (fontActual.getStyle()) {
-		        case Font.PLAIN -> nouEstil = fontActual.deriveFont(Font.BOLD);
-		        case Font.ITALIC -> nouEstil = fontActual.deriveFont(Font.BOLD + Font.ITALIC);
-		        case Font.BOLD -> nouEstil = fontActual.deriveFont(Font.PLAIN);
-		        case Font.BOLD + Font.ITALIC -> nouEstil = fontActual.deriveFont(Font.ITALIC);
-		    }
-			
-			
-		} else if (obj == finestra.getBtnItalic()) {
-			switch (fontActual.getStyle()) {
-		        case Font.PLAIN -> nouEstil = fontActual.deriveFont(Font.ITALIC);
-		        case Font.ITALIC -> nouEstil = fontActual.deriveFont(Font.PLAIN);
-		        case Font.BOLD -> nouEstil = fontActual.deriveFont(Font.BOLD + Font.ITALIC);
-		        case Font.BOLD + Font.ITALIC -> nouEstil = fontActual.deriveFont(Font.BOLD);
-			}
-		} else if (obj == finestra.getComboSize()) {
-			//Obtenim la mida seleccionada, la transformem a Float i l'apliquem al nou estil
-			String mida = finestra.getComboSize().getSelectedItem().toString();
-			Float novaMida = Float.parseFloat(mida);
-			nouEstil = fontActual.deriveFont(novaMida);
-			
-		} else if (obj == finestra.getComboFont() ) {
-			//Obtenim el nom de la nova font
-			String tipusLletra = finestra.getComboFont().getSelectedItem().toString();
-			
-			//Obtenim els atributs de l'estil actual
-			int estil = fontActual.getStyle();
-			int mida = fontActual.getSize();
-			
-			//Definim el nou estil
-			nouEstil = new Font(tipusLletra, estil, mida);
-		}
 		
-		if (nouEstil != null) {
-			textArea.setFont(nouEstil);
-		}
+			//Comprovem el botó apretat i definim comportament segons els estils inicials
+		StyledDocument doc = text.getStyledDocument();
+        int start = text.getSelectionStart();
+        int end = text.getSelectionEnd();
+        Element element = doc.getCharacterElement(start);
+        AttributeSet as = element.getAttributes();
+        
+        //Creem un conjunt d'atributs que després podem modificar
+        SimpleAttributeSet sas = new SimpleAttributeSet();
+        
+        if (start != end) { // Comprovem si hi ha text seleccionat
+			if (obj == finestra.getBtnBold()) {
+				
+             	// Determinem si el text seleccionat està actualment negreta
+                boolean isBold = StyleConstants.isBold(as);
+                StyleConstants.setBold(sas, !isBold); // Alternem l'estat de negreta
+
+	        } else if (obj == finestra.getBtnItalic()) {
+	        	
+	        	boolean isItalic = StyleConstants.isItalic(as);
+	            StyleConstants.setItalic(sas, !isItalic);
+
+	        } else if (obj == finestra.getComboSize()) {
+	        	
+				int mida = (int) finestra.getComboSize().getSelectedItem();
+				StyleConstants.setFontSize(sas, mida); //Definim nova mida
+			} else if (obj == finestra.getComboFont()) {
+				String font = finestra.getComboFont().getSelectedItem().toString();
+				StyleConstants.setFontFamily(sas, font);
+			}
+			
+			// Apliquem els nous atributs al text seleccionat
+            doc.setCharacterAttributes(start, end - start, sas, false);
+        }
 	}
 }
