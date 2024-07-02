@@ -176,6 +176,7 @@ public class MenuPrincipal extends JFrame {
 		separator3.setPreferredSize(new Dimension(400, 2));
 		toolBar.add(separator3);
 		
+		//TODO Posar la font actual del textPane
 	}
 	
 	private void initComboSize() {

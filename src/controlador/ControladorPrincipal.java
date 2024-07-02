@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 
 import persistencia.GestorFitxers;
@@ -68,9 +69,9 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 			break;
 		case "Exit":
 			if (edit) {
-				//TODO Preguntar si volem guardar abans de tancar
-			} else {
-				finestra.dispose();
+				if (gestor.saveChangesBeforeExit(text) != JOptionPane.CANCEL_OPTION) {
+					finestra.dispose();
+				}
 			}
 			break;
 		case "Full Screen":
