@@ -26,7 +26,6 @@ public class AboutFrame extends JFrame {
 	}
 	
 	private void init() {
-		//TODO Implementar finestra About
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		getContentPane().add(panel, BorderLayout.CENTER);
