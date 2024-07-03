@@ -70,7 +70,9 @@ public class MenuPrincipal extends JFrame {
 		
 		//Creem els menuItems dels menus i els afegim als seus menus corresponents
 		itemOpen = new JMenuItem("Open");
+		itemOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
 		itemSave = new JMenuItem("Save");
+		itemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
 		itemSaveAs = new JMenuItem("Save as...");
 		itemExit = new JMenuItem("Exit");
 		
@@ -113,7 +115,6 @@ public class MenuPrincipal extends JFrame {
 		
 		
 		//Creem un panel per afegit un JToolBar i les opcions per formatar el text
-		//TODO Implementar la barra i els seus ActionListeners
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
