@@ -65,6 +65,11 @@ public class ControladorFormatText implements ActionListener {
 	        	boolean isItalic = StyleConstants.isItalic(as);
 	            StyleConstants.setItalic(sas, !isItalic);
 
+	        } else if (obj == finestra.getBtnUnderline()) {
+		        
+	        	boolean isUnderLine = StyleConstants.isUnderline(as);
+	        	StyleConstants.setUnderline(sas, !isUnderLine);
+	        	
 	        } else if (obj == finestra.getComboSize()) {
 	        	
 				int mida = (int) finestra.getComboSize().getSelectedItem();

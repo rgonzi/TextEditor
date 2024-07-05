@@ -27,6 +27,7 @@ public class MenuPrincipal extends JFrame {
 	private JScrollPane scrollPane;
 	private JTextPane textPane;
 	private JTextField counts;
+	private JButton btnUnderline;
 	
 
 	public MenuPrincipal() {
@@ -140,6 +141,15 @@ public class MenuPrincipal extends JFrame {
 		btnItalic.setPreferredSize(new Dimension(23, 23));
 		btnItalic.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		toolBar.add(btnItalic);
+		
+		btnUnderline = new JButton("U");
+		btnUnderline.setToolTipText("Underline");
+		btnUnderline.setPreferredSize(new Dimension(23, 23));
+		btnUnderline.setMinimumSize(new Dimension(23, 23));
+		btnUnderline.setMaximumSize(new Dimension(23, 23));
+		btnUnderline.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnUnderline.setFocusable(false);
+		toolBar.add(btnUnderline);
 		
 		separator1 = new JSeparator();
 		separator1.setMinimumSize(new Dimension(10, 0));
@@ -315,6 +325,10 @@ public class MenuPrincipal extends JFrame {
 
 	public void setBtnItalic(JButton btnItalic) {
 		this.btnItalic = btnItalic;
+	}
+	
+	public JButton getBtnUnderline() {
+		return btnUnderline;
 	}
 
 	public JComboBox<String> getComboFont() {
