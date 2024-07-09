@@ -1,14 +1,10 @@
 package vista;
  
 import javax.swing.*;
-import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.StyledEditorKit;
 
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class MenuPrincipal extends JFrame {
@@ -187,7 +183,6 @@ public class MenuPrincipal extends JFrame {
 		separator3.setPreferredSize(new Dimension(400, 2));
 		toolBar.add(separator3);
 		
-		//TODO Posar la font actual del textPane
 	}
 	
 	private void initComboSize() {
@@ -204,6 +199,7 @@ public class MenuPrincipal extends JFrame {
 		//Afegim les fonts al nostre comboBox
 		for (int i = 0; i < styles.length; i++) {
 			comboStyle.addItem(styles[i]);
+			comboStyle.setFont(new Font(styles[i], Font.PLAIN, 11));
 			
 			if (styles[i].equals("Times New Roman")) {
 				posDefaultFont = i;

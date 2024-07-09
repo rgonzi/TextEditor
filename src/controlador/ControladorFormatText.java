@@ -1,22 +1,13 @@
 package controlador;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.*;
-import java.text.AttributedCharacterIterator;
-import java.util.Map;
-
-import javax.swing.JEditorPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.Element;
-import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-import javax.swing.text.StyledEditorKit;
 
 import vista.MenuPrincipal;
 
@@ -29,6 +20,7 @@ public class ControladorFormatText implements ActionListener {
 		
 		finestra.getBtnBold().addActionListener(this);
 		finestra.getBtnItalic().addActionListener(this);
+		finestra.getBtnUnderline().addActionListener(this);
 		finestra.getComboFont().addActionListener(this);
 		finestra.getComboSize().addActionListener(this);
 		finestra.getItemSelectAll().addActionListener(this);
