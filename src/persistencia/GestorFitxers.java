@@ -34,12 +34,13 @@ public class GestorFitxers {
 				bw.write(textPane.getText());
 				bw.close();
 				
+				//Obtenim el nom del fitxer
+				fileName = fitxer.getName();
+				setFileName(fileName);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		fileName = fitxer.getName();
-		setFileName(fileName);
 	}
 	
 	public void saveFileAs (JTextPane textPane) {
@@ -90,9 +91,9 @@ public class GestorFitxers {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				//Obtenim el nom del fitxer
 				fileName = fitxer.getName();
 				setFileName(fileName);
-				controlador.updateStats();
 			}
 		}
 	}
@@ -111,7 +112,10 @@ public class GestorFitxers {
 	}
 	
 	public String getFileName() {
-		return fileName;
+		if (fitxer != null) {
+			return fileName;
+		}
+		return "";
 	}
 	
 	public void setFileName(String fileName) {
