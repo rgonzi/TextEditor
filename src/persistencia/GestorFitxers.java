@@ -14,7 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class GestorFitxers {
 	
-	private String nomFitxer;
+	private String fileName = "";
 	private File fitxer = null;
 	private JFileChooser selectFitxer;
 	
@@ -38,6 +38,8 @@ public class GestorFitxers {
 				e.printStackTrace();
 			}
 		}
+		fileName = fitxer.getName();
+		setFileName(fileName);
 	}
 	
 	public void saveFileAs (JTextPane textPane) {
@@ -74,8 +76,6 @@ public class GestorFitxers {
 					textPane.setText("");
 					fitxer = selectFitxer.getSelectedFile();
 					
-					//TODO Implementar el nom del fitxer al titol del JFrame principal
-					
 					BufferedReader br = new BufferedReader(new FileReader(fitxer));
 					StringBuilder sb = new StringBuilder();
 					String line;
@@ -90,9 +90,11 @@ public class GestorFitxers {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				fileName = fitxer.getName();
+				setFileName(fileName);
+				controlador.updateStats();
 			}
 		}
-		
 	}
 	
 	public int saveChangesBeforeExit (JTextPane textPane) {
@@ -106,5 +108,13 @@ public class GestorFitxers {
 			}
 		}
 		return result;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	
+	public void setFileName(String fileName) {
+		this.fileName = " | " + fileName;
 	}
 }

@@ -55,13 +55,13 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 			gestor.openFile(text);
 			break;
 		case "Save":
-			gestor = new GestorFitxers();
 			gestor.saveFile(text);
 			//Ara el text actual s'ha guardat
 			edit = false;
 			break;
 		case "Save as...":
 			gestor.saveFileAs(text);
+			edit = false;
 			break;
 		case "Exit":
 			if (edit) {
@@ -76,9 +76,9 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 		case "About":
 			about = new AboutFrame();
 			about.setVisible(true);
-			
 			break;
 		}
+		updateStats();
 	}
 	
 	@Override
@@ -88,14 +88,27 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 	
 	@Override
 	public void keyReleased (KeyEvent e) {
-		
+		updateStats();
+	}
+	
+	//Mostra uns comptadors de paraules i caràcters i el nom del fitxer
+	private void updateStats() {
 		paraules = finestra.getTextPane().getText().split("\\s").length;
 		caracters = finestra.getTextPane().getText().length();
 		//Actualitzem comptadors de paraules i caràcters
 		if (finestra.getTextPane().getText().equals("")) {
 			finestra.getCounts().setText("Words: 0 Chars: 0");
 		} else {
-			finestra.getCounts().setText("Words: " + paraules + " Chars: " + caracters);
+			finestra.getCounts().setText("Words: " + paraules + " Chars: " + caracters 
+					+ gestor.getFileName() + saved());
+		}
+	}
+	
+	private String saved() {
+		if (edit) {
+			return "";
+		} else {
+			return " | Saved!";
 		}
 	}
 }
