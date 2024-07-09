@@ -38,8 +38,7 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 		
 		finestra.getTextPane().addKeyListener(this); //Per comprobar si hem modificat el text
 		
-		//Iniciem els controladors
-		controladorFormatText = new ControladorFormatText(finestra);
+		new ControladorFormatText(finestra);
 		gestor = new GestorFitxers();
 		
 	}
