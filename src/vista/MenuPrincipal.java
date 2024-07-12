@@ -27,6 +27,11 @@ public class MenuPrincipal extends JFrame {
 	
 
 	public MenuPrincipal() {
+		try {
+			setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/res/icon.jpg")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//Iniciem la finestra amb una mida predefinida i la centrem
 		setTitle("Text editor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -5,15 +5,19 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class AboutFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JTextArea txtAbout;
+	private JTextPane txtAbout;
 
 	public AboutFrame() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AboutFrame.class.getResource("/res/icon.jpg")));
 		setTitle("About");
 		setResizable(false);
 		setAlwaysOnTop(true);
@@ -31,7 +35,8 @@ public class AboutFrame extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		txtAbout = new JTextArea();
+		txtAbout = new JTextPane();
+		txtAbout.setOpaque(false);
 		txtAbout.setText("TextEditor ©"
 				+ "\nVersion: preRelease"
 				+ "\nRelease Date: -"
