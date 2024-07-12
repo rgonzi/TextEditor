@@ -6,8 +6,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
 public class AboutFrame extends JFrame {
@@ -38,8 +36,8 @@ public class AboutFrame extends JFrame {
 		txtAbout = new JTextPane();
 		txtAbout.setOpaque(false);
 		txtAbout.setText("TextEditor ©"
-				+ "\nVersion: preRelease"
-				+ "\nRelease Date: -"
+				+ "\nVersion: 1.0"
+				+ "\nRelease Date: 12/07/2024"
 				+ "\n\nDeveloped by: Roger González Acosta [rgonzi]"
 				+ "\nEmail: rogergonzalezacosta@gmail.com"
 				+ "\nGitHub: https://github.com/rgonzi");
