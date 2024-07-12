@@ -1,5 +1,8 @@
 package controlador;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -65,13 +68,14 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 			break;
 		case "Exit":
 			if (edit) {
-				if (gestor.saveChangesBeforeExit(text) != JOptionPane.CANCEL_OPTION) {
-					finestra.dispose();
+				if (gestor.saveChangesBeforeExit(text) == JOptionPane.CANCEL_OPTION) {
+					break;
 				}
 			}
+			finestra.dispose();
 			break;
 		case "Full Screen":
-			//TODO Fer gran la finestra
+			toggleFullScreen(finestra);
 			break;
 		case "About":
 			about = new AboutFrame();
@@ -111,4 +115,30 @@ public class ControladorPrincipal extends KeyAdapter implements ActionListener {
 			return " | Saved!";
 		}
 	}
+	
+	public static void toggleFullScreen(MenuPrincipal finestra) {
+		GraphicsDevice device = null;
+		
+		//Obtenim el dispositiu de pantalla
+        if (device == null) {
+            GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            device = environment.getDefaultScreenDevice();
+        }
+        
+        //Comprovem si podem entrar en mode pantalla completa
+        if (device.isFullScreenSupported()) {
+            if (device.getFullScreenWindow() == null) {
+                //Entrar en el mode pantalla completa
+                finestra.dispose();
+                finestra.setResizable(false);
+                device.setFullScreenWindow(finestra);
+            } else {
+                //Sortir del mode pantalla completa
+                device.setFullScreenWindow(null);
+                finestra.dispose();
+                finestra.setResizable(true);
+                finestra.setVisible(true);
+            }
+        }
+    }
 }

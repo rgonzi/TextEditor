@@ -34,7 +34,7 @@ public class GestorFitxers {
 				bw.write(textPane.getText());
 				bw.close();
 				
-				//Obtenim el nom del fitxer
+				//Obtenim el nom del fitxer per mostrar-lo a la finestra
 				fileName = fitxer.getName();
 				setFileName(fileName);
 			} catch (IOException e) {
