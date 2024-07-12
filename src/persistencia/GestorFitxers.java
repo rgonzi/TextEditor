@@ -106,6 +106,7 @@ public class GestorFitxers {
 					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
 				saveFile(textPane);
+				JOptionPane.showMessageDialog(textPane, "FIle saved!", null, JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		return result;
